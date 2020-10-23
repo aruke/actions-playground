@@ -29,11 +29,22 @@ jobs:
 
       - name: Check the variables
         run: |
-          echo $VAR
-          echo $GITHUB_ENV
-          echo $ENV_A
-          echo $ENV_B
-          echo $ENV_C
+          echo "VAR=$VAR"
+          echo "GITHUB_ENV=$GITHUB_ENV"
+          echo "ENV_A=$ENV_A"
+          echo "ENV_B=$ENV_B"
+          echo "ENV_C=$ENV_C"
           
       - name: Check the file
         run: cat .env
+      
+      - name: Export with script
+        run: echo $(cat .env | xargs) >> $GITHUB_ENV
+
+      - name: Check the variables
+        run: |
+          echo "VAR=$VAR"
+          echo "GITHUB_ENV=$GITHUB_ENV"
+          echo "ENV_A=$ENV_A"
+          echo "ENV_B=$ENV_B"
+          echo "ENV_C=$ENV_C"
