@@ -20,10 +20,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Set a environment veriable to GITHUB_ENV
-        run: echo VAR=val >> $GITHUB_ENV
+      - name: Set multiple environment veriables to GITHUB_ENV
+        run: echo $ENV_FILE_SECRET >> $GITHUB_ENV
+        env:
+          ENV_FILE_SECRET: ${{ secrets.ENV_FILE_SECRET }} 
 
-      - name: Check the variable
+      - name: Check the variables
         run: |
           echo $VAR
           echo $GITHUB_ENV
+          echo $ENV_A
+          echo $ENV_B
+          echo $ENV_C
