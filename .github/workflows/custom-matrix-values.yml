@@ -1,0 +1,20 @@
+
+name: Custom Matrix Values
+
+on:
+  push: 
+    branches: custom-matrix-values
+
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        someVar: [someVar1, someVar2]
+    steps:
+      - name: Run a one-line script
+        run: echo {{ matrix.someVar }}
